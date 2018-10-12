@@ -1,8 +1,9 @@
- 
+% Author: Lino Mediavilla
+
 clc; close all; clear all
 format short
 sFile = 'datos.csv'; % NOMBRE ARCHIVO DE SALIDA
-maxTime = 20; % DURACI”N DEL EXPERIMENTO EN MINUTOS
+maxTime = 20; % DURACI√ìN DEL EXPERIMENTO EN MINUTOS
 
 delete(instrfindall);    
 s1 = serial('COM6');  % TALVEZ CAMBIE DE COMPUTADORA A COMPUTADORA. REVISAR PUERTO DEL ARDUINO EN devmgmt (administrador de dispositivos)   
@@ -17,7 +18,7 @@ while (1)
         fprintf('%.1f [s] - %.3f [V]\n', mData(end,1), mData(end,2)); %IMPRIME EN CONSOLA EL TIEMPO Y VOLTAJE MEDIDO
     end
     if(mData(end,1) >= maxTime*60*1000)
-        break % SE DETENDR¡ CUANDO EL TIEMPO M¡XIMO SE ALCANCE
+        break % SE DETENDR√Å CUANDO EL TIEMPO M√ÅXIMO SE ALCANCE
     end
 end    
 
