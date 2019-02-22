@@ -25,7 +25,7 @@ end
 delete(instrfindall);     
 mData = mData(1:end-1,:);
 csvwrite(sFile,mData);    
-ww
+
 %%
 figure(2)
 plot((mData(:,1)/1000)/60,mData(:,2))
