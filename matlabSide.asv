@@ -3,37 +3,34 @@
 clc; close all; clear all
 format short
 
-outputFile = 'datos'; % Nombre del archivo de salida (sin extensión)
+outputFile = 'datos.csv'; % Nombre del archivo de salida
 maxTime = 20; % Duración del experimento en minutos
 dataColumns = 2; % Nro. de datos enviados por arduino en cada loop.
 
 delete(instrfindall); 
 % Config. del puerto serial
 % Revisar puerto del arduino en devmgmt (administrador de dispositivos)   
-s1 = serial('COM6');  
+%s1 = serial('COM6');  
 s1.BaudRate = 9600;      
-fopen(s1);  
+%fopen(s1);  
 mData = []; 
 
 hold on
 while (1)  
-    incomingSerialData = fscanf(s1);   
+    %incomingSerialData = fscanf(s1);  
+    incomingSerialData = sprintf('0.3434\t1.002');
     dataRow = strsplit(incomingSerialData,'\t');  
     if( size(dataRow,2) == dataColumns ) 
-        % Guardar nuevo dato
         dataRow = str2double(dataRow) + [size(mData,1) 0.1*rand(1,1)];
         mData = [mData; dataRow];
         
         % Plot en tiempo real  
-        
         % ** Punto x punto **
         % plot((dataRow(1)/1000)/60, dataRow(2), 'ro', 'markerfacecolor', 'r', 'markersize', 3);
-        
         % ** Interpolando linealmente **
+        % (graficar 2 puntos a la vez por eficiencia. la clave es el hold
         if(size(mData, 1) > 1)
             plot((mData(end-1:end,1)/1000)/60,mData(end-1:end,2), 'r')
-            xlabel('Time [min]');
-            ylabel('V'); 
             drawnow
         end
         
@@ -50,10 +47,7 @@ end
 
 delete(instrfindall);     
 mData = mData(1:end-1,:);
-
-% Guardar en .csv y en .mat
-csvwrite(strcat(outputFile, '.csv'), mData);    
-save(outputFile, 'mData');
+csvwrite(outputFile,mData);    
 
 %% Plot aparte con mejor formato una vez que ha terminado el experimento
 
