@@ -21,7 +21,7 @@ while (1)
     dataRow = strsplit(incomingSerialData,'\t');  
     if( size(dataRow,2) == dataColumns ) 
         % Guardar nuevo dato
-        dataRow = str2double(dataRow) + [size(mData,1) 0.1*rand(1,1)];
+        dataRow = str2double(dataRow);
         mData = [mData; dataRow];
         
         % Plot en tiempo real  
