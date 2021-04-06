@@ -1,5 +1,3 @@
-// Author: Lino Mediavilla
-
 int Vo; 
 
 void setup() {
