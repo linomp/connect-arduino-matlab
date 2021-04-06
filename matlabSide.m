@@ -1,10 +1,8 @@
-% Author: Lino Mediavilla
-
 clc; close all; clear all
 format short
 
-outputFile = 'datos'; % Nombre del archivo de salida (sin extensión)
-maxTime = 20; % Duración del experimento en minutos
+outputFile = 'datos'; % Nombre del archivo de salida (sin extensiÃ³n)
+maxTime = 20; % DuraciÃ³n del experimento en minutos
 dataColumns = 2; % Nro. de datos enviados por arduino en cada loop.
 
 delete(instrfindall); 
@@ -41,7 +39,7 @@ while (1)
         %fprintf('%.1f [s] - %.3f [V]\n', mData(end,1), mData(end,2)); 
     end
     
-    % Detener loop cuando el timepo máximo se alcance
+    % Detener loop cuando el timepo mÃ¡ximo se alcance
     % (se asume que la 1era columna de datos contiene los tiempos en ms)
     if(mData(end,1) >= maxTime*60*1000)
         break 
